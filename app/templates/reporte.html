@@ -1,0 +1,64 @@
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>Reporte — {{ inv.nombre }} / {{ plan.nombre }}</title>
+    <style>
+      body{font-family: system-ui, -apple-system, Arial; margin: 2rem;}
+      h1,h2,h3{margin: .3rem 0;}
+      table{border-collapse: collapse; width: 100%; margin: .7rem 0;}
+      th, td{border:1px solid #ccc; padding:.4rem; text-align:left;}
+      .small{font-size:.9rem; color:#333}
+    </style>
+  </head>
+  <body>
+    <h1>Reporte de Invernadero</h1>
+    <div class="small">Proyecto 2 — GuateRiegos 2.0</div>
+
+    <h2>{{ inv.nombre }} — {{ plan.nombre }}</h2>
+
+    <h3>Asignación de drones por hilera</h3>
+    <table>
+      <thead><tr><th>Hilera</th><th>Dron</th></tr></thead>
+      <tbody>
+        {% for d in inv.drones %}
+        <tr><td>H{{ d.hilera }}</td><td>{{ d.nombre }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h3>Estadísticas</h3>
+    <p>Tiempo óptimo: <strong>{{ res.tiempo_optimo }}</strong> seg</p>
+    <p>Agua total: <strong>{{ res.agua_total }}</strong> L — Fertilizante total: <strong>{{ res.fert_total }}</strong> g</p>
+    <h4>Por dron</h4>
+    <table>
+      <thead><tr><th>Dron</th><th>Litros</th><th>Gramos</th></tr></thead>
+      <tbody>
+        {% for e in res.eficiencias %}
+        <tr><td>{{ e.nombre }}</td><td>{{ e.litros }}</td><td>{{ e.gramos }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h3>Instrucciones en el tiempo</h3>
+    <table>
+      <thead><tr><th>Segundo</th><th>Acciones</th></tr></thead>
+      <tbody>
+        {% for t in timeline %}
+        <tr>
+          <td>{{ t.segundo }}</td>
+          <td>
+            {% for a in t.acciones %}
+              <div><strong>{{ a.nombre }}</strong>: {{ a.accion }}</div>
+            {% endfor %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <hr>
+    <p class="small">Generado automáticamente por la aplicación Flask del proyecto.</p>
+  </body>
+</html>

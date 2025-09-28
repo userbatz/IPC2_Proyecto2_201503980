@@ -1,0 +1,18 @@
+
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h2>Invernadero: {{ invernadero.nombre }}</h2>
+  <p>Hileras: {{ invernadero.numero_hileras }} — Plantas por hilera: {{ invernadero.plantas_x_hilera }}</p>
+  <h3>Seleccionar plan:</h3>
+  <form method="get" action="{{ url_for('routes.simular') }}">
+    <input type="hidden" name="invernadero" value="{{ invernadero.nombre }}">
+    <select name="plan">
+      {% for p in planes %}
+        <option value="{{ p }}">{{ p }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit">Simular</button>
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,29 @@
+
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h2>Cargar configuración (XML)</h2>
+  <form method="post" action="{{ url_for('routes.cargar') }}" enctype="multipart/form-data">
+    <input type="file" name="archivo" accept=".xml" required>
+    <button type="submit">Cargar</button>
+  </form>
+</section>
+
+<section class="card">
+  <h2>Invernaderos cargados</h2>
+  {% if invernaderos %}
+    <ul>
+      {% for nom in invernaderos %}
+        <li><a href="{{ url_for('routes.ver_invernadero', nombre=nom) }}">{{ nom }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No hay invernaderos cargados.</p>
+  {% endif %}
+</section>
+
+<section class="card">
+  <h2>Generar salida.xml</h2>
+  <a class="btn" href="{{ url_for('routes.salida_xml') }}">Generar y descargar</a>
+</section>
+{% endblock %}

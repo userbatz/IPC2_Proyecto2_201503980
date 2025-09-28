@@ -1,0 +1,52 @@
+
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h2>Resultado — {{ invernadero.nombre }} / {{ plan.nombre }}</h2>
+  <p><strong>Tiempo óptimo:</strong> {{ resultado.tiempo_optimo }} segundos</p>
+  <p><strong>Agua total:</strong> {{ resultado.agua_total }} litros</p>
+  <p><strong>Fertilizante total:</strong> {{ resultado.fert_total }} gramos</p>
+
+  <h3>Consumo por dron</h3>
+  <table>
+    <thead><tr><th>Dron</th><th>Litros</th><th>Gramos</th></tr></thead>
+    <tbody>
+      {% for e in resultado.eficiencias %}
+      <tr>
+        <td>{{ e.nombre }}</td>
+        <td>{{ e.litros }}</td>
+        <td>{{ e.gramos }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h3>Instrucciones por segundo</h3>
+  <table>
+    <thead><tr><th>Segundo</th><th>Acciones</th></tr></thead>
+    <tbody>
+      {% for t in timeline %}
+      <tr>
+        <td>{{ t.segundo }}</td>
+        <td>
+          {% for a in t.acciones %}
+            <div><strong>{{ a.nombre }}</strong>: {{ a.accion }}</div>
+          {% endfor %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="actions">
+    <a class="btn" href="{{ url_for('routes.descargar_reporte', nombre=invernadero.nombre, plan=plan.nombre) }}">Descargar Reporte HTML</a>
+    <form method="get" action="{{ url_for('routes.tda') }}" class="inline">
+      <input type="hidden" name="invernadero" value="{{ invernadero.nombre }}">
+      <input type="hidden" name="plan" value="{{ plan.nombre }}">
+      <label>t (seg):</label>
+      <input type="number" name="t" value="0" min="0">
+      <button class="btn">Graficar TDAs en t</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

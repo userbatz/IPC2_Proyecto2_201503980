@@ -1,0 +1,34 @@
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GuateRiegos 2.0</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <header>
+      <h1>GuateRiegos 2.0 — Proyecto 2 IPC2</h1>
+      <nav>
+        <a href="{{ url_for('routes.index') }}">Inicio</a>
+        <a href="{{ url_for('routes.ayuda') }}">Ayuda</a>
+      </nav>
+    </header>
+    <main>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </main>
+    <footer>
+      <small>Desarrollado en Flask. Sin uso de estructuras nativas de Python para el modelado (TDAs propios).</small>
+    </footer>
+  </body>
+</html>

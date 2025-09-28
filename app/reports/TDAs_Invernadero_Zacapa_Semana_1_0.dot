@@ -1,0 +1,20 @@
+digraph G {
+rankdir=LR;
+node [shape=record];
+subgraph cluster_drones { label="Drones (t=0)"; color=lightgrey;
+"DR01" [label="{DR01|Hilera: 1|Pos: 0|Obj: 2|4}"];
+"DR02" [label="{DR02|Hilera: 2|Pos: 0|Obj: 1|2}"];
+"DR03" [label="{DR03|Hilera: 3|Pos: 0|Obj: 3}"];
+}
+subgraph cluster_plan { label="Plan"; color=lightblue;
+P0 [label="H1-P2",style=filled,fillcolor=yellow];
+P1 [label="H2-P1"];
+P0 -> P1;
+P2 [label="H2-P2"];
+P1 -> P2;
+P3 [label="H3-P3"];
+P2 -> P3;
+P4 [label="H1-P4"];
+P3 -> P4;
+}
+}

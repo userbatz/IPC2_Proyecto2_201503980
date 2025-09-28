@@ -14,9 +14,8 @@ Aplicación web (Flask) para simular el riego y aplicación de fertilizante en i
 
 ## Ejecución
 ```bash
-cd IPC2_Proyecto2_201503980
 python3 -m venv .venv
-source .venv/bin/activate  # en Windows: .venv\Scripts\activate
+source .venv/bin/activate 
 pip install -r requirements.txt
 
 esto es importante:

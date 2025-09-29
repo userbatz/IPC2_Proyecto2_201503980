@@ -2,7 +2,7 @@
 {% extends "base.html" %}
 {% block content %}
 <section class="card">
-  <h2>Cargar configuración (XML)</h2>
+  <h2>CARGAR CONFIGURACIONES:</h2>
   <form method="post" action="{{ url_for('routes.cargar') }}" enctype="multipart/form-data">
     <input type="file" name="archivo" accept=".xml" required>
     <button type="submit">Cargar</button>
